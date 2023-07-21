@@ -1,21 +1,24 @@
 window.onload = function() {
-  updateDates();
+
+  getDates();
   
-  // update the count every day
+  // update the count every minute
   setInterval(function() {
-   updateDates();
-  }, 5000); // run every 24 hours
+    getDates();
+  }, 60000);
 }
 
-function updateDates() {
-  nowDate = new Date();
-  var moenDate = new Date("2023-07-21T00:00:00Z"); // the date when this script starts running
-  var brennaDate = new Date("2023-06-20T00:00:00Z"); // the date when this script starts running
-  var tretteDate = new Date("2023-06-23T00:00:00Z"); // the date when this script starts running
-  var diffInDaysMoen = Math.floor((nowDate - moenDate) / (1000 * 60 * 60 * 24));
-  var  diffInDaysBrenna = Math.floor((nowDate - brennaDate) / (1000 * 60 * 60 * 24));
-  var diffInDaysTrette = Math.floor((nowDate - tretteDate) / (1000 * 60 * 60 * 24));
-  document.getElementById('days-count').textContent = diffInDaysMoen;
-  document.getElementById('days-count-brenna').textContent = diffInDaysBrenna;
-  document.getElementById('days-count-tretteberg').textContent = diffInDaysTrette;
+// Fetch data from API and update the DOM
+async function getDates() {
+  const response = await fetch("https://api.inhabil.no");
+  const dates = await response.json();
+  document.getElementById('days-count').textContent = dates.latest;
+  const olderDiv = document.getElementById("older");
+  olderDiv.innerHTML = "";
+  dates.older.forEach(function(date) { 
+    const newDiv = document.createElement("span");
+    const newContent = document.createTextNode(date.toString());
+    newDiv.appendChild(newContent);
+    olderDiv.appendChild(newDiv);
+  });
 }

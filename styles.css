@@ -18,9 +18,13 @@ body {
   color: #333;
 }
 
-.old {
+#older {
   text-decoration: line-through;
   color: gray;
+}
+
+#older span:not(:first-child)  {
+  margin-left: 0.4em;
 }
 
 #api {
