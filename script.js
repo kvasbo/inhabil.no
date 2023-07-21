@@ -4,7 +4,7 @@ window.onload = function() {
   // update the count every day
   setInterval(function() {
    updateDates();
-  }, 24 * 60 * 60 * 1000); // run every 24 hours
+  }, 5000); // run every 24 hours
 }
 
 function updateDates() {
