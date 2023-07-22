@@ -13,7 +13,10 @@ export default {
     return Math.floor((now - dt) / (1000 * 60 * 60 * 24));
    });
 
-   counts.sort();
+   counts.sort(function(a, b) {
+    return a - b;
+   });
+   
    const latest = counts.shift();
 
     var out = {
