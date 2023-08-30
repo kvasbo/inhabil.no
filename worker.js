@@ -3,6 +3,7 @@ export default {
     const now = new Date();
 
     const cases = [
+      "2023-08-30T00:00:00Z",
       "2023-07-21T00:00:00Z",
       "2023-06-20T00:00:00Z",
       "2023-06-23T00:00:00Z"
